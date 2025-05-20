@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note Taking App</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col font-sans">
+  <header class="bg-gradient-to-r from-teal-700 to-teal-500 shadow-lg p-4 sticky top-0 z-10">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-extrabold text-white">Notes</h1>
+      <nav class="flex items-center space-x-4">
+        <a href="/" class="text-white hover:text-teal-200">Home</a>
+        <a href="/archive" class="text-white hover:text-teal-200">Archive</a>
+        <a href="/trash" class="text-white hover:text-teal-200">Trash</a>
+        <a href="/create" class="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-800 transition">New Note</a>
+        <button id="darkModeToggle" class="text-white hover:text-teal-200">🌙 Dark Mode</button>
+      </nav>
+    </div>
+    <div class="container mx-auto mt-4">
+      <form action="/" method="GET" class="flex space-x-2">
+        <input type="text" name="search" placeholder="Search notes..." value="<%= typeof search !== 'undefined' ? search : '' %>" class="w-full p-2 rounded-lg border border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <select name="tag" class="p-2 rounded-lg border border-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 focus:outline-none">
+          <option value="">All Tags</option>
+          <% const allTags = new Set(); notes.forEach(note => note.tags.forEach(tag => allTags.add(tag))); %>
+          <% allTags.forEach(tag => { %>
+            <option value="<%= tag %>" <%= tag === (typeof tag !== 'undefined' ? tag : '') ? 'selected' : '' %>><%= tag %></option>
+          <% }); %>
+        </select>
+        <button type="submit" class="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-800 transition">Search</button>
+      </form>
+    </div>
+  </header>
+  <main class="container mx-auto p-4 flex-1">

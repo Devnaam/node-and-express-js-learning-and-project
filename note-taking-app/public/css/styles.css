@@ -1,0 +1,31 @@
+body {
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+
+.dark {
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+.note-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #e5e7eb;
+}
+
+.dark .note-card {
+  border-color: #374151;
+}
+
+.note-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  background: linear-gradient(to right, #1D4E89, #2B6CB0);
+}
+
+footer {
+  background: linear-gradient(to right, #1D4E89, #2B6CB0);
+}
